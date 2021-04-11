@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
+
+            android:layout_marginEnd="100dp"
+            android:text="카드 뒤집기"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/bg"
+        android:background="#f0e68c"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="190dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:background="#848484">
+
+            <TextView
+                android:id="@+id/et_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#fff0f5"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="@drawable/fruit01"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_1"
+                >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_1"
+                    android:background="#f0e68c" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit02"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_2">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_2"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit03"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_3">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_3" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit04"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_4">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_4" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="@drawable/fruit05"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_5">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_5"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit06"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_6">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_6"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit07"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_7">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_7"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit08"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_8">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_8"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="@drawable/fruit01"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_9">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_9"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit02"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_10">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_10"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit03"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_11">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_11"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit04"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_12">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_12"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="@drawable/fruit05"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_13">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_13"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit06"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_14">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_14"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit07"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_15">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_15"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/fruit08"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_margin="3dp"
+                android:id="@+id/btn_16">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff0f5"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/btn_text_16"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
