@@ -51,11 +51,6 @@ class MainActivity : AppCompatActivity() {
                         serviceIntent.action = ConnectionService.ACTION_CONNECTION
                         serviceIntent.putExtra("userID",textID)
                         startService(serviceIntent)
-
-                        val nextIntent = Intent(this@MainActivity, LobbyActivity::class.java)
-                        startActivity(nextIntent)
-
-                        finish()
                     }
                     else {//아이디와 비밀번호 불일치
                         dialog.setTitle("아이디 비밀번호 불일치")
@@ -83,5 +78,18 @@ class MainActivity : AppCompatActivity() {
 
             finish()
         }
+    }
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        when(intent?.getStringExtra("command"))
+        {
+            "moveLobby" -> moveLobby()
+        }
+    }
+    fun moveLobby(){
+        val nextIntent = Intent(this@MainActivity, LobbyActivity::class.java)
+        startActivity(nextIntent)
+
+        finish()
     }
 }

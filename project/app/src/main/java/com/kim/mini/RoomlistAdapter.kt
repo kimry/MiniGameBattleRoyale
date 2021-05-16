@@ -22,13 +22,10 @@ class RoomlistAdapter(val roomList : ArrayList<RoomlistModel>) : RecyclerView.Ad
             itemView.setOnClickListener {
                 val curPos : Int =adapterPosition
                 val room : RoomlistModel = roomList.get(curPos)
+
                 serviceIntent.putExtra("roomNumber", "${room.roomNumber}")
                 serviceIntent.action = ConnectionService.ACTION_ENTERROOM
                 parent.context.startService(serviceIntent)
-
-                val nextIntent = Intent(parent.context, RoomActivity::class.java)
-                nextIntent.putExtra("state","nomal")
-                parent.context.startActivity(nextIntent)
 
                 serviceIntent.action = ConnectionService.ACTION_LOBBYFINISH
                 parent.context.startService(serviceIntent)

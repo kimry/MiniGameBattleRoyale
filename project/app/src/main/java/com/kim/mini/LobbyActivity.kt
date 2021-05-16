@@ -111,7 +111,6 @@ class LobbyActivity : AppCompatActivity() {
         nextIntent.putExtra("state","master")
         nextIntent.putExtra("preActivity","Lobby")
         startActivity(nextIntent)
-
         finish()
     }
     fun getRoomList(roomLists : String)
@@ -121,8 +120,9 @@ class LobbyActivity : AppCompatActivity() {
     }
     fun Finish()
     {
-
-        Log.i("lobbyfinish","success")
+        val nextIntent = Intent(this, RoomActivity::class.java)
+        nextIntent.putExtra("state","nomal")
+        startActivity(nextIntent)
         finish()
     }
 }

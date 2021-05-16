@@ -3,6 +3,7 @@ package com.kim.mini
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.FieldClassification
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -87,6 +88,7 @@ class RoomActivity : AppCompatActivity() {
             binding.inputText.setText("")
         }
 
+        //시작 버튼 클릭
         binding.btnStart.setOnClickListener {
             if(state=="master") {
                 serviceIntent.action=ConnectionService.ACTION_GAMESTART
@@ -127,6 +129,7 @@ class RoomActivity : AppCompatActivity() {
         binding.userList.adapter = UserlistAdapter(userList)
     }
     fun userListRenewal(){
+        serviceIntent.putExtra("place","Room")
         serviceIntent.action = ConnectionService.ACTION_USERLIST
         startService(serviceIntent)
 
@@ -137,7 +140,7 @@ class RoomActivity : AppCompatActivity() {
         Log.i("moveGame","${possible}")
         if(possible=="possible"){
 
-            val nextIntent = Intent(this, onetofiftyActivity::class.java)
+            val nextIntent = Intent(this, MatchingCardActivity::class.java)
             if(state=="master") {
                 nextIntent.putExtra("state", "master")
             }

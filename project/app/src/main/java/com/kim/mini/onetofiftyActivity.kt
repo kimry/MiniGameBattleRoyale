@@ -137,35 +137,44 @@ class onetofiftyActivity : AppCompatActivity() {
         button_text[24] = binding.btnText25
         count = binding.etCount
     }
-
     private fun all_button_click() {
         for (i in 0..24) {
             button[i]!!.setOnClickListener {
-                if (match_number_int == 50) {
-
-                    Toast.makeText(this@onetofiftyActivity,"Win!!",Toast.LENGTH_SHORT).show();
-                    serviceIntent.action = ConnectionService.ACTION_GAMEEND
-                    startService(serviceIntent)
-                    timer.cancel()
-                    fail = 0
-                    Handler().postDelayed({
-                        val nextIntent = Intent(this@onetofiftyActivity, RoomActivity::class.java)
-                        nextIntent.putExtra("state",state)
-                        nextIntent.putExtra("preActivity","Game")
-                        startActivity(nextIntent)
-                        finish()
-                    }, 1500)
-
-
-                }
                 if (match_number_int == button_number_01[i]) {
                     match_number_int += 1
-                    button_text[i]
-                        ?.setText(Integer.toString(button_number_02[i]))
+                    button_text[i]?.setText(Integer.toString(button_number_02[i]))
+                    button_number_01[i]=0
+                    serviceIntent.action = ConnectionService.ACTION_BTNACTION
+                    serviceIntent.putExtra("game","otf")
+                    serviceIntent.putExtra("point",i)
+                    startService(serviceIntent)
+
                 }
+                else
                 if (match_number_int == button_number_02[i]) {
-                    match_number_int += 1
                     button_text[i]!!.visibility = View.GONE
+                    button_number_02[i]=0
+                    serviceIntent.action = ConnectionService.ACTION_BTNACTION
+                    serviceIntent.putExtra("game","otf")
+                    serviceIntent.putExtra("point",i)
+                    startService(serviceIntent)
+                    if (match_number_int == 50) {
+                        Toast.makeText(this,"Win!!",Toast.LENGTH_SHORT).show();
+                        startService(serviceIntent)
+                        timer.cancel()
+                        fail = 0
+                        Handler().postDelayed({
+                            val nextIntent = Intent(this, WaitingActivity::class.java)
+                            nextIntent.putExtra("game","otf")
+                            startActivity(nextIntent)
+
+                            serviceIntent.action = ConnectionService.ACTION_GAMECLEAR
+                            serviceIntent.putExtra("game","otf")
+                            startService(serviceIntent)
+                            finish()
+                        }, 1000)
+                    }
+                    match_number_int += 1
                 }
 
             }
@@ -205,22 +214,31 @@ class onetofiftyActivity : AppCompatActivity() {
 
         count?.setText(timeLeftFormat)
     }
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when(intent?.getStringExtra("command")) {
             "endGame" -> endGame()
+            "requestScreen" -> requestScreen(intent.getStringExtra("opuserid"))
         }
     }
     fun endGame() {
         Toast.makeText(this,"Lose!!",Toast.LENGTH_SHORT).show();
         Handler().postDelayed({
             timer.cancel()
-            val nextIntent = Intent(this, RoomActivity::class.java)
-            nextIntent.putExtra("state",state)
-            nextIntent.putExtra("preActivity","Game")
+            val nextIntent = Intent(this, LobbyActivity::class.java)
             startActivity(nextIntent)
             finish()
         },1500)
-
     }
+    fun requestScreen(opuserid : String?) {
+        serviceIntent.action = ConnectionService.ACTION_SENDSCREEN
+        serviceIntent.putExtra("btn1",button_number_01)
+        serviceIntent.putExtra("btn2",button_number_02)
+        serviceIntent.putExtra("n",match_number_int)
+        serviceIntent.putExtra("time",count!!.text)
+        serviceIntent.putExtra("opuserid",opuserid)
+        startService(serviceIntent)
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.kim.mini
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class UserlistAdapter(val userList : ArrayList<UserlistModel>) : RecyclerView.Adapter<UserlistAdapter.UserlistViewHolder>() {
-
+class OpuserlistAdapter (val userList : ArrayList<UserlistModel>) : RecyclerView.Adapter<UserlistAdapter.UserlistViewHolder>()
+{
     private lateinit var serviceIntent : Intent
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserlistAdapter.UserlistViewHolder {
@@ -19,6 +20,14 @@ class UserlistAdapter(val userList : ArrayList<UserlistModel>) : RecyclerView.Ad
         serviceIntent = Intent(parent.context, ConnectionService::class.java)
 
         return UserlistAdapter.UserlistViewHolder(view).apply{
+            itemView.setOnClickListener {
+                val curPos : Int =adapterPosition
+                val user : UserlistModel = userList.get(curPos)
+
+                serviceIntent.putExtra("Opuserid", "${user.userid_text}")
+                serviceIntent.action = ConnectionService.ACTION_WAITROOMFINISH
+                parent.context.startService(serviceIntent)
+            }
         }
     }
 
