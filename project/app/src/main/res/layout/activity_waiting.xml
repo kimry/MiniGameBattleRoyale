@@ -15,13 +15,11 @@
         android:layout_weight="8"
         android:weightSum="7">
 
-        <TextView
-            android:id="@+id/textUserID"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:orientation="horizontal"
-            android:text="ID : " />
+            android:orientation="horizontal" />
 
         <TextView
             android:id="@+id/textResult"
@@ -29,6 +27,7 @@
             android:layout_height="0dp"
             android:layout_weight="5.5"
             android:text="채팅내역" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

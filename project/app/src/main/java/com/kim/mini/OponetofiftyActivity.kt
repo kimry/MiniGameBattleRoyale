@@ -50,6 +50,7 @@ class OponetofiftyActivity : AppCompatActivity() {
             startService(serviceIntent)
 
             val nextIntent = Intent(this, WaitingActivity::class.java)
+            nextIntent.putExtra("game","otf")
             startActivity(nextIntent)
 
             finish()
@@ -111,7 +112,6 @@ class OponetofiftyActivity : AppCompatActivity() {
         button_text[22] = binding.btnText23
         button_text[23] = binding.btnText24
         button_text[24] = binding.btnText25
-        count = binding.etCount
     }
 
     //60000 = 60초
@@ -152,7 +152,7 @@ class OponetofiftyActivity : AppCompatActivity() {
         when(intent?.getStringExtra("command")) {
             "endGame" -> endGame()
             "getScreen" -> getScreen(intent.getIntArrayExtra("btn1"),intent.getIntArrayExtra("btn2"),intent.getIntExtra("n",0))
-            "getotfAction" ->getAction(intent.getIntExtra("point",0))
+            "getAction" ->getAction(intent.getIntExtra("point",0))
         }
     }
     fun endGame() {

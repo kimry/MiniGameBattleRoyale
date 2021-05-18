@@ -17,6 +17,9 @@ import java.util.*
 class shisenActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityShisenBinding
+
+    private lateinit var serviceIntent : Intent
+
     var success: Int = 0
     var route = mutableListOf<Int>(0,0) // 경로를 나타내는 변수
     var turningPoint = mutableListOf<Int>(0,0) // 꺽이는 부분을 나타내는 변수 && turningPoint[0]과 turningPoint[1]은 둘다 0인 garbage값
@@ -41,6 +44,8 @@ class shisenActivity : AppCompatActivity() {
 
         binding = ActivityShisenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        serviceIntent = Intent(this, ConnectionService::class.java)
 
         set_bg()
         randomMixing()
@@ -239,7 +244,10 @@ class shisenActivity : AppCompatActivity() {
 
                                         if(exitSign == 10){
                                             Toast.makeText(this,"Win!!", Toast.LENGTH_SHORT).show();
+                                            serviceIntent.action = ConnectionService.ACTION_GAMECLEAR
+                                            serviceIntent.putExtra("game","ss")
 
+                                            startService(serviceIntent)
                                             Handler().postDelayed({
                                                 val nextIntent = Intent(this, LobbyActivity::class.java)
                                                 startActivity(nextIntent)

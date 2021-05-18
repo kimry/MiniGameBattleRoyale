@@ -120,6 +120,7 @@ $io->on('connection', function ($socket) use ($io) {
         {
             if($rcount==$ucount-1){
                 echo "room $socket->roomNumber start possible!!!\n";
+                $io->roomList = array_diff($io->roomList,array($socket->roomNumber));
                 $io->to($socket->roomNumber)->emit('moveGame','possible');
             }
             else{
@@ -174,13 +175,13 @@ $io->on('connection', function ($socket) use ($io) {
 
     $socket->on('sendAction',function($point,$game) use($io, $socket){
         $room = $socket->userid."Screen";
-        echo "$socket->userid send $point to $room!!!\n";
+        echo "$socket->userid send $point to $room in $game!!!\n";
         $io->to($room)->emit("getAction",$point, $game);
     });
 
 
     $socket->on('opscreenExit',function() use($socket){
-        echo "$socket->userid enter waitingroom from $socket->opScreen Screen\n!!";
+        echo "$socket->userid enter waitingroom from $socket->opid Screen\n!!";
         $socket->leave($socket->opid);
     });
 
@@ -196,15 +197,22 @@ $io->on('connection', function ($socket) use ($io) {
         array_push($io->userList["$socket->roomNumber"]["clearuserid"],$socket->userid);
         if(count($io->userList["$socket->roomNumber"]["clearuserid"])==count($io->userList["$socket->roomNumber"]["id"])-1)
         {
+            $loser=[];
             $loser=array_diff($io->userList["$socket->roomNumber"]["id"],$io->userList["$socket->roomNumber"]["clearuserid"]);
             foreach($loser as $id)
             {
-                echo "$io->roomNumber loser is $loserid!!!\n";
-                $io->to($loserid)->emit('endGame',$game);
+                echo "$socket->roomNumber loser is $id!!!\n";
+                $io->to($id)->emit('endGame',$game);
             }
+
+            sleep(1);
+
             $io->userList["$socket->roomNumber"]["id"]=$io->userList["$socket->roomNumber"]["clearuserid"];
             $io->userList["$socket->roomNumber"]["clearuserid"]=[];
-            $io->to($socket->roomNumber)->emit('WmoveGame');
+            if($game!='ss')
+            {
+                $io->to($socket->roomNumber)->emit('WmoveGame');
+            }
         }
     });
 });

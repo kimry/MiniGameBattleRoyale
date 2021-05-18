@@ -501,12 +501,5 @@
             android:text="1 to 50"
             android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/et_count"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#848484"
-            android:textColor="#fff0f5"/>
-
     </LinearLayout>
 </RelativeLayout>

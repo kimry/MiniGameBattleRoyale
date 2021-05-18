@@ -58,8 +58,8 @@ class OpmatchingCardActivity : AppCompatActivity() {
             startService(serviceIntent)
 
             val nextIntent = Intent(this, WaitingActivity::class.java)
+            nextIntent.putExtra("game","mc")
             startActivity(nextIntent)
-
             finish()
         }
 
@@ -85,7 +85,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
         button[15] = binding.btn16
 
         backgr[0] = binding.bg
-        count = binding.etCount
     }
 
     val timer = object : CountDownTimer(60000, 10) {

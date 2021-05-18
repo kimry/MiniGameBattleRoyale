@@ -217,6 +217,7 @@ class MatchingCardActivity : AppCompatActivity() {
             timer.cancel()
             val nextIntent = Intent(this, LobbyActivity::class.java)
             startActivity(nextIntent)
+
             finish()
         },1500)
     }
