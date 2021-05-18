@@ -13,8 +13,8 @@
 ## 2. 서버
 ### - php / phpsocket.io library 사용
 ### - http
-#### ㅁ Server/User_management/signup.php
-#### ㅁ Server/User_management/login.php
+* Server/User_management/signup.php
+* Server/User_management/login.php
 ### - websocket
 * login
 * enter
