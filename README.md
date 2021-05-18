@@ -16,22 +16,22 @@
 #### ㅁ Server/User_management/signup.php
 #### ㅁ Server/User_management/login.php
 ### - websocket
-#### ㅁ login
-#### ㅁ enter
-#### ㅁ chat messasge
-#### ㅁ requestID
-#### ㅁ disconnect
-#### ㅁ roomlist
-#### ㅁ createroom
-#### ㅁ userDelete
-#### ㅁ userlist
-#### ㅁ gameStart
-#### ㅁ gameReady
-#### ㅁ requestOpScreen
-#### ㅁ sendScreen
-#### ㅁ sendAction
-#### ㅁ opscreenExit
-#### ㅁ mcsendScreen
-#### ㅁ gameClear
+* login
+* enter
+* chat messasge
+* requestID
+* disconnect
+* roomlist
+* createroom
+* userDelete
+* userlist
+* gameStart
+* gameReady
+* requestOpScreen
+* sendScreen
+* sendAction
+* opscreenExit
+* mcsendScreen
+* gameClear
 ## 3. 클라이언트
 ### - android studio를 이용한 kotlin 기반의 android 클라이언트
