@@ -48,7 +48,6 @@ class shisenActivity : AppCompatActivity() {
         serviceIntent = Intent(this, ConnectionService::class.java)
 
         set_bg()
-        randomMixing()
         changeMap()
         timer.start()
         all_button_click()
@@ -244,6 +243,7 @@ class shisenActivity : AppCompatActivity() {
 
                                         if(exitSign == 10){
                                             Toast.makeText(this,"Win!!", Toast.LENGTH_SHORT).show();
+                                            timer.cancel()
                                             serviceIntent.action = ConnectionService.ACTION_GAMECLEAR
                                             serviceIntent.putExtra("game","ss")
 
@@ -251,6 +251,8 @@ class shisenActivity : AppCompatActivity() {
                                             Handler().postDelayed({
                                                 val nextIntent = Intent(this, LobbyActivity::class.java)
                                                 startActivity(nextIntent)
+
+                                                finish()
                                             }, 1500)
                                         }
 
@@ -829,29 +831,6 @@ class shisenActivity : AppCompatActivity() {
 
 
     }//chanLine함수의 끝
-
-    //이미지를 섞는 함수
-    private fun randomMixing(){
-        /*
-        var random = Random()
-        for (i in 0..500){
-            var randX = random.nextInt(4) + 1
-            var randY = random.nextInt(5) + 1
-            Log.i("thiislast","aa")
-            var temp : Drawable? = Button[1][1]!!.background
-            Button[1][1]!!.background = Button[randX][randY]!!.background
-            Button[randX][randY]!!.background = temp
-
-            Log.i("mother","bb")
-
-
-            var temp2 : Int = mapp[1][1]
-            mapp[1][1] = mapp[randX][randY]
-            mapp[randX][randY] = temp2
-
-        }
-*/
-    }
 
 
     val timer = object: CountDownTimer(60000, 10){

@@ -3,17 +3,12 @@ package com.kim.mini
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
-import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.kim.mini.databinding.ActivityOnetofiftyBinding
 import com.kim.mini.databinding.ActivityOponetofiftyBinding
-import com.kim.mini.databinding.ActivityRoomBinding
-import java.util.*
+
 
 class OponetofiftyActivity : AppCompatActivity() {
     //뷰 바인딩 함수
@@ -28,7 +23,6 @@ class OponetofiftyActivity : AppCompatActivity() {
     var fail : Int = 1
     var button = arrayOfNulls<RelativeLayout>(26)
     var button_text = arrayOfNulls<TextView>(26)
-    var count : TextView?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -114,39 +108,6 @@ class OponetofiftyActivity : AppCompatActivity() {
         button_text[24] = binding.btnText25
     }
 
-    //60000 = 60초
-    val timer = object: CountDownTimer(90000, 10){
-        override fun onTick(millisUntilFinished: Long){
-            updateCountDownText(millisUntilFinished)
-        }
-
-        override fun onFinish() {
-
-
-            Toast.makeText(this@OponetofiftyActivity,"Lose!!", Toast.LENGTH_SHORT).show();
-            if(fail ==1) {
-                Handler().postDelayed({
-                    val nextIntent = Intent(this@OponetofiftyActivity, RoomActivity::class.java)
-                    nextIntent.putExtra("state",state)
-                    nextIntent.putExtra("preActivity","Game")
-                    startActivity(nextIntent)
-
-                    finish()
-                }, 1500)
-            }
-
-        }
-    }
-
-    private fun updateCountDownText(millisUntilFinished : Long){
-        //var minutes : Int = ((mTimeLeftInMillis / 1000) / 60).toInt()
-        var seconds : Int = ((millisUntilFinished / 1000) % 120).toInt()
-        var milsec : Int = ((millisUntilFinished % 1000)/10).toInt()
-
-        var timeLeftFormat : String = String.format("%02d:%02d",seconds, milsec)
-
-        count?.setText(timeLeftFormat)
-    }
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when(intent?.getStringExtra("command")) {
@@ -158,7 +119,6 @@ class OponetofiftyActivity : AppCompatActivity() {
     fun endGame() {
         Toast.makeText(this,"Lose!!", Toast.LENGTH_SHORT).show();
         Handler().postDelayed({
-            timer.cancel()
             val nextIntent = Intent(this, RoomActivity::class.java)
             nextIntent.putExtra("state",state)
             nextIntent.putExtra("preActivity","Game")
@@ -168,7 +128,7 @@ class OponetofiftyActivity : AppCompatActivity() {
     }
     fun getScreen(btn1 : IntArray?, btn2 : IntArray?, n : Int){
 
-        match_number_int=n
+        match_number_int = n
         button_number_01 = btn1!!
         button_number_02 = btn2!!
 

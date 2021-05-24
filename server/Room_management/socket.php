@@ -213,6 +213,12 @@ $io->on('connection', function ($socket) use ($io) {
             {
                 $io->to($socket->roomNumber)->emit('WmoveGame');
             }
+            else{
+                $socket->leave("$socket->roomNumber");
+                $socket->join("0");
+                echo "$socket->userid / $socket->roomNumber enter!!!\n";
+                $socket->roomNumber = "0";
+            }
         }
     });
 });

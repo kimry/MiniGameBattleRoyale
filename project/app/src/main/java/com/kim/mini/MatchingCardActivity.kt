@@ -178,13 +178,14 @@ class MatchingCardActivity : AppCompatActivity() {
         }
     }
 
-    val timer = object : CountDownTimer(600000, 10) {
+    val timer = object : CountDownTimer(90000, 10) {
         override fun onTick(millisUntilFinished: Long) {
             updateCountDownText(millisUntilFinished)
         }
 
         override fun onFinish() {
             Toast.makeText(this@MatchingCardActivity,"Win!!",Toast.LENGTH_SHORT).show();
+
             if (fail == 1) {
                 Handler().postDelayed({
                     val nextIntent = Intent(this@MatchingCardActivity, WaitingActivity::class.java)
@@ -196,7 +197,7 @@ class MatchingCardActivity : AppCompatActivity() {
     }
 
     private fun updateCountDownText(millisUntilFinished: Long) {
-        var seconds: Int = ((millisUntilFinished / 1000) % 60).toInt()
+        var seconds: Int = ((millisUntilFinished / 1000) % 90).toInt()
         var milsec: Int = ((millisUntilFinished % 1000) / 10).toInt()
 
         var timeLeftFormat: String = String.format("%02d:%02d", seconds, milsec)

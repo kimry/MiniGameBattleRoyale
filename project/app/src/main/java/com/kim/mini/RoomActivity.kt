@@ -103,6 +103,7 @@ class RoomActivity : AppCompatActivity() {
     override fun onBackPressed(){
         serviceIntent.action = ConnectionService.ACTION_DISCONNECTION
         startService(serviceIntent)
+
         finish()
     }
     override fun onNewIntent(intent: Intent?) {
@@ -148,6 +149,7 @@ class RoomActivity : AppCompatActivity() {
                 nextIntent.putExtra("state", "nomal")
             }
             startActivity(nextIntent)
+
             finish()
         }
         else{

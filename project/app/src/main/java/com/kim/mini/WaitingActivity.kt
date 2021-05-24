@@ -92,6 +92,7 @@ class WaitingActivity : AppCompatActivity() {
         }
         nextIntent.putExtra("opuserid",opuserid)
         startActivity(nextIntent)
+
         finish()
     }
     fun WmoveGame() {

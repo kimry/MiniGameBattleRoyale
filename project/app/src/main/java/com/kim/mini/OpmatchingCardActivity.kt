@@ -4,16 +4,12 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
-import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.kim.mini.databinding.ActivityMatchingCardBinding
 import com.kim.mini.databinding.ActivityOpmatchingCardBinding
-import com.kim.mini.databinding.ActivityOponetofiftyBinding
 import java.util.*
 
 class OpmatchingCardActivity : AppCompatActivity() {
@@ -28,9 +24,7 @@ class OpmatchingCardActivity : AppCompatActivity() {
     var fruitNum = IntArray(17)
     var matchCount: Int = 0
     var backgr = arrayOfNulls<TextView>(1)
-    var now_number: TextView? = null
     var button = arrayOfNulls<RelativeLayout>(16)
-    var count: TextView? = null
 
     var openCount: Int = 0
     var button1_index: Int = 0
@@ -66,7 +60,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
     }
 
     private fun set_button() {
-        now_number = findViewById<View>(R.id.et_count) as TextView
         button[0] = binding.btn1
         button[1] = binding.btn2
         button[2] = binding.btn3
@@ -87,31 +80,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
         backgr[0] = binding.bg
     }
 
-    val timer = object : CountDownTimer(60000, 10) {
-        override fun onTick(millisUntilFinished: Long) {
-            updateCountDownText(millisUntilFinished)
-        }
-
-        override fun onFinish() {
-            Toast.makeText(this@OpmatchingCardActivity,"Win!!", Toast.LENGTH_SHORT).show();
-            if (fail == 1) {
-                Handler().postDelayed({
-                    val nextIntent = Intent(this@OpmatchingCardActivity, WaitingActivity::class.java)
-                    startActivity(nextIntent)
-                }, 1500)
-            }
-
-        }
-    }
-
-    private fun updateCountDownText(millisUntilFinished: Long) {
-        var seconds: Int = ((millisUntilFinished / 1000) % 60).toInt()
-        var milsec: Int = ((millisUntilFinished % 1000) / 10).toInt()
-
-        var timeLeftFormat: String = String.format("%02d:%02d", seconds, milsec)
-
-        count?.setText(timeLeftFormat)
-    }
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when(intent?.getStringExtra("command")) {
@@ -123,7 +91,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
     fun endGame() {
         Toast.makeText(this,"Lose!!", Toast.LENGTH_SHORT).show();
         Handler().postDelayed({
-            timer.cancel()
             val nextIntent = Intent(this, RoomActivity::class.java)
             nextIntent.putExtra("preActivity","Game")
             startActivity(nextIntent)
@@ -192,7 +159,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
 
                         if (matchCount == 8) {
                             Toast.makeText(this, "Win!!", Toast.LENGTH_SHORT).show();
-                            timer.cancel()
                             fail = 0
 
                             Handler().postDelayed({
