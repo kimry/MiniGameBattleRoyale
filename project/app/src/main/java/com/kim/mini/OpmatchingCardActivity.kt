@@ -83,19 +83,26 @@ class OpmatchingCardActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when(intent?.getStringExtra("command")) {
-            "endGame" -> endGame()
+            "opFinish" -> opFinish()
             "getScreen" -> getScreen(intent.getIntArrayExtra("btn"),intent.getIntExtra("openCount",0),intent.getIntExtra("btn_index",0))
-            "getAction" ->getAction(intent.getIntExtra("point",0))
+            "getAction" -> getAction(intent.getIntExtra("point",0))
+            "backwaitingroom" -> backwaitingroom()
         }
     }
-    fun endGame() {
-        Toast.makeText(this,"Lose!!", Toast.LENGTH_SHORT).show();
-        Handler().postDelayed({
-            val nextIntent = Intent(this, RoomActivity::class.java)
-            nextIntent.putExtra("preActivity","Game")
-            startActivity(nextIntent)
-            finish()
-        },1500)
+    fun backwaitingroom() {
+        val nextIntent = Intent(this, WaitingActivity::class.java)
+        nextIntent.putExtra("game","mc")
+        startActivity(nextIntent)
+        finish()
+    }
+    fun opFinish() {
+        serviceIntent.action = ConnectionService.ACTION_OPFINISH
+        startService(serviceIntent)
+
+        val nextIntent = Intent(this, WaitingActivity::class.java)
+        nextIntent.putExtra("game","mc")
+        startActivity(nextIntent)
+        finish()
     }
     fun getScreen(btn : IntArray?, openCount_s : Int, btn_index : Int){
         fruitNum = btn!!
@@ -156,20 +163,6 @@ class OpmatchingCardActivity : AppCompatActivity() {
                         fruitNum[button1_index] += 10
                         openCount = 0
                         Log.d("matchcount : ", Integer.toString(matchCount))
-
-                        if (matchCount == 8) {
-                            Toast.makeText(this, "Win!!", Toast.LENGTH_SHORT).show();
-                            fail = 0
-
-                            Handler().postDelayed({
-                                val nextIntent = Intent(this@OpmatchingCardActivity, WaitingActivity::class.java)
-                                nextIntent.putExtra("game", "mc")
-                                startActivity(nextIntent)
-                                finish()
-                            }, 1500)
-
-
-                        }
                     }
                     openCount = 0
                 }, 600)

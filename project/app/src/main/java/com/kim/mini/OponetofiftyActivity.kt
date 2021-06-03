@@ -111,20 +111,27 @@ class OponetofiftyActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         when(intent?.getStringExtra("command")) {
-            "endGame" -> endGame()
+            "opFinish" -> opFinish()
             "getScreen" -> getScreen(intent.getIntArrayExtra("btn1"),intent.getIntArrayExtra("btn2"),intent.getIntExtra("n",0))
             "getAction" ->getAction(intent.getIntExtra("point",0))
+            "backwaitingroom" -> backwaitingroom()
         }
     }
-    fun endGame() {
-        Toast.makeText(this,"Lose!!", Toast.LENGTH_SHORT).show();
-        Handler().postDelayed({
-            val nextIntent = Intent(this, RoomActivity::class.java)
-            nextIntent.putExtra("state",state)
-            nextIntent.putExtra("preActivity","Game")
-            startActivity(nextIntent)
-            finish()
-        },1500)
+    fun backwaitingroom() {
+        val nextIntent = Intent(this, WaitingActivity::class.java)
+        nextIntent.putExtra("game","otf")
+        startActivity(nextIntent)
+        finish()
+    }
+    fun opFinish() {
+
+        serviceIntent.action = ConnectionService.ACTION_OPFINISH
+        startService(serviceIntent)
+
+        val nextIntent = Intent(this, WaitingActivity::class.java)
+        nextIntent.putExtra("game","otf")
+        startActivity(nextIntent)
+        finish()
     }
     fun getScreen(btn1 : IntArray?, btn2 : IntArray?, n : Int){
 

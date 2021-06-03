@@ -101,14 +101,11 @@ class MatchingCardActivity : AppCompatActivity() {
         button[13] = binding.btn14
         button[14] = binding.btn15
         button[15] = binding.btn16
-
         backgr[0] = binding.bg
         count = binding.etCount
     }
 
-
     private fun all_button_click() {
-
         for (i in 0..15) {
             button[i]!!.setOnClickListener {
                 openCount++
@@ -164,8 +161,6 @@ class MatchingCardActivity : AppCompatActivity() {
                                         startActivity(nextIntent)
                                         finish()
                                     }, 1000)
-
-
                                 }
                             }
                             openCount = 0
@@ -173,7 +168,6 @@ class MatchingCardActivity : AppCompatActivity() {
                     }
 
                 }
-
             }
         }
     }
@@ -184,11 +178,15 @@ class MatchingCardActivity : AppCompatActivity() {
         }
 
         override fun onFinish() {
-            Toast.makeText(this@MatchingCardActivity,"Win!!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this@MatchingCardActivity,"Lose!!",Toast.LENGTH_SHORT).show();
 
             if (fail == 1) {
                 Handler().postDelayed({
-                    val nextIntent = Intent(this@MatchingCardActivity, WaitingActivity::class.java)
+                    serviceIntent.action=ConnectionService.ACTION_TIMEOUT
+                    serviceIntent.putExtra("game","mc")
+                    startService(serviceIntent)
+
+                    val nextIntent = Intent(this@MatchingCardActivity, LobbyActivity::class.java)
                     startActivity(nextIntent)
                 }, 1500)
             }

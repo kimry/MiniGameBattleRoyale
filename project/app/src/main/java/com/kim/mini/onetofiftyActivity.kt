@@ -190,13 +190,15 @@ class onetofiftyActivity : AppCompatActivity() {
 
         override fun onFinish() {
 
-
             Toast.makeText(this@onetofiftyActivity,"Lose!!",Toast.LENGTH_SHORT).show();
             if(fail ==1) {
                 Handler().postDelayed({
-                    val nextIntent = Intent(this@onetofiftyActivity, RoomActivity::class.java)
+                    serviceIntent.action=ConnectionService.ACTION_TIMEOUT
+                    serviceIntent.putExtra("game","otf")
+                    startService(serviceIntent)
+
+                    val nextIntent = Intent(this@onetofiftyActivity, LobbyActivity::class.java)
                     nextIntent.putExtra("state",state)
-                    nextIntent.putExtra("preActivity","Game")
                     startActivity(nextIntent)
                     finish()
                 }, 1500)

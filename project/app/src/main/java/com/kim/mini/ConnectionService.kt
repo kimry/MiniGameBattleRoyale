@@ -34,6 +34,8 @@ class ConnectionService : Service() {
         val ACTION_OPSCREENEXIT = "opscreenExit"
         val ACTION_MCSENDSCREEN = "mcsendscreen"
         val ACTION_GAMECLEAR = "gameClear"
+        val ACTION_OPFINISH = "opFinish"
+        val ACTION_TIMEOUT = "timeout"
     }
 
 
@@ -66,7 +68,7 @@ class ConnectionService : Service() {
                 intent.getIntArrayExtra("btn2"),
                 intent.getStringExtra("count"),
                 intent.getIntExtra("n",0))
-            ACTION_WAITROOMFINISH -> watingroomFinish(intent.getStringExtra("Opuserid").toString())
+            ACTION_WAITROOMFINISH -> waitingroomFinish(intent.getStringExtra("Opuserid").toString())
             ACTION_BTNACTION -> btnAction(intent.getStringExtra("game"),intent.getIntExtra("point",0))
             ACTION_OPSCREENEXIT -> opscreenExit()
             ACTION_MCSENDSCREEN -> mcsendscreen(
@@ -75,9 +77,18 @@ class ConnectionService : Service() {
                 intent.getIntExtra("openCount",0),
                 intent.getIntExtra("btn_index",0))
             ACTION_GAMECLEAR -> gameClear(intent.getStringExtra("game"))
+            ACTION_OPFINISH -> opFinish()
+            ACTION_TIMEOUT -> timeout(intent.getStringExtra("game"))
         }
 
         return super.onStartCommand(intent, flags, startId)
+    }
+    fun timeout(game : String?) {
+        mSocket.emit("timeout",game)
+    }
+    fun opFinish()
+    {
+        mSocket.emit("opFinish")
     }
     fun gameClear(game : String?)
     {
@@ -96,7 +107,7 @@ class ConnectionService : Service() {
     {
         mSocket.emit("sendAction",point,game)
     }
-    fun watingroomFinish(opuserid : String)
+    fun waitingroomFinish(opuserid : String)
     {
         var activityIntent : Intent
         activityIntent = Intent(this, WaitingActivity::class.java)
@@ -148,7 +159,6 @@ class ConnectionService : Service() {
     }
 
     fun requestID(){
-        Log.i("srequestID","requested")
         mSocket.emit("requestID")
     }
     fun disconnection() {
@@ -192,6 +202,8 @@ class ConnectionService : Service() {
         mSocket.on("getAction",getAction)
         mSocket.on("mcgetScreen",mcgetScreen)
         mSocket.on("WmoveGame",WmoveGame)
+        mSocket.on("backwaitingroom",backwaitingroom)
+        mSocket.on("opFinish",opFinish)
     }
     private var moveLobby = Emitter.Listener {
         var activityIntent : Intent
@@ -356,6 +368,28 @@ class ConnectionService : Service() {
         var activityIntent = Intent(this,WaitingActivity::class.java)
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         activityIntent.putExtra("command","WmoveGame")
+        startActivity(activityIntent)
+    }
+    private var backwaitingroom = Emitter.Listener {
+        lateinit var activityIntent : Intent
+        if(it[0]=="mc") {
+            activityIntent = Intent(this,OpmatchingCardActivity::class.java)
+        }else if(it[0]=="otf") {
+            activityIntent = Intent(this,OponetofiftyActivity::class.java)
+        }
+        activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activityIntent.putExtra("command","backwaitingroom")
+        startActivity(activityIntent)
+    }
+    private var opFinish = Emitter.Listener {
+        lateinit var activityIntent : Intent
+        if(it[0]=="mc") {
+            activityIntent = Intent(this,OpmatchingCardActivity::class.java)
+        }else if(it[0]=="otf") {
+            activityIntent = Intent(this,OponetofiftyActivity::class.java)
+        }
+        activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activityIntent.putExtra("command","opFinish")
         startActivity(activityIntent)
     }
 }
