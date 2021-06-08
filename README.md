@@ -17,6 +17,16 @@
 * Server/User_management/login.php
 ### - websocket
 * login
+``` php
+$socket->on('login',function($userid) use($socket) {
+  $socket->userid = $userid;
+  $socket->roomNumber = "0";
+  $socket->join("0");
+  $socket->join($socket->userid);
+  echo "$socket->userid / $socket->roomNumber login!!!\n";
+  $socket->emit('moveLobby');
+});
+```
 * enter
 * chat messasge
 * requestID
@@ -33,5 +43,7 @@
 * opscreenExit
 * mcsendScreen
 * gameClear
+* onFinish
+* timeout
 ## 3. 클라이언트
 ### - android studio를 이용한 kotlin 기반의 android 클라이언트
