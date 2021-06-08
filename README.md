@@ -17,16 +17,6 @@
 * Server/User_management/login.php
 ### - websocket
 * login
-``` php
-$socket->on('login',function($userid) use($socket) {
-  $socket->userid = $userid;
-  $socket->roomNumber = "0";
-  $socket->join("0");
-  $socket->join($socket->userid);
-  echo "$socket->userid / $socket->roomNumber login!!!\n";
-  $socket->emit('moveLobby');
-});
-```
 * enter
 * chat messasge
 * requestID
