@@ -15,7 +15,7 @@
 ### - http
 * Server/User_management/signup.php
 * Server/User_management/login.php
-### - websocket
+### - socket.io
 * login
 * enter
 * chat messasge
