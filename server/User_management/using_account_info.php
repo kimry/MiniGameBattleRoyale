@@ -16,19 +16,19 @@ function findid($id)
 }
 function create($id, $pw)
 {
-    $dbHost="api.odyssea-ogc.com:13306";
-    $dbName="riyoung";
-    $dbUser="riyoung";
-    $dbPass="rlafldud";
+    $dbHost=""; // DBurl 입력
+    $dbName=""; // DBname 입력
+    $dbUser=""; // DBuser 입력
+    $dbPass=""; // DBpw 입력
     $pdo = new PDO("mysql:host={$dbHost};dbname={$dbName}",$dbUser,$dbPass);
     $statement =  $pdo -> query("insert into account_info(id,pw) values('".$id."','".$pw."')");
 }
 function go_out($addr)
 {
-    $dbHost="api.odyssea-ogc.com:13306";
-    $dbName="riyoung";
-    $dbUser="riyoung";
-    $dbPass="rlafldud";
+    $dbHost=""; // DBurl 입력
+    $dbName=""; // DBname 입력
+    $dbUser=""; // DBuser 입력
+    $dbPass=""; // DBpw 입력
     $pdo = new PDO("mysql:host={$dbHost};dbname={$dbName}",$dbUser,$dbPass);
     $statement =  $pdo -> query("delete from accout_info where id='1'");
 }
