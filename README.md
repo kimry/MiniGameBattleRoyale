@@ -7,6 +7,7 @@
 >4. 기술구현 내용
 >5. 서버
 >6. 클라이언트
+>7. 참조
 
 # 기획의도
 
@@ -60,16 +61,21 @@
 ## 클라이언트
 ### - android studio를 이용한 kotlin 기반의 클라이언트
 * MainActivity<br>
-![2](https://user-images.githubusercontent.com/79510083/121180474-ddb45080-c89b-11eb-9d8c-9214f518ec9b.png)
+  ![2](https://user-images.githubusercontent.com/79510083/121180474-ddb45080-c89b-11eb-9d8c-9214f518ec9b.png)
 * SignupActivity<br>
-![3](https://user-images.githubusercontent.com/79510083/121180496-e3aa3180-c89b-11eb-80b8-d2c703d03855.png)
+  ![3](https://user-images.githubusercontent.com/79510083/121180496-e3aa3180-c89b-11eb-80b8-d2c703d03855.png)
 * LobbyActivity<br>
-![4](https://user-images.githubusercontent.com/79510083/121180520-e9077c00-c89b-11eb-9b2f-53f3bf632d43.png)
+  ![4](https://user-images.githubusercontent.com/79510083/121180520-e9077c00-c89b-11eb-9b2f-53f3bf632d43.png)
 * RoomActivity<br>
-![5](https://user-images.githubusercontent.com/79510083/121180550-f15fb700-c89b-11eb-9453-6fcee26687f1.png)
+  ![5](https://user-images.githubusercontent.com/79510083/121180550-f15fb700-c89b-11eb-9453-6fcee26687f1.png)
 * onetofiftyActivity<br>
-<img src="https://user-images.githubusercontent.com/79510083/121180563-f6246b00-c89b-11eb-831f-ecb309dd9c8d.png" alt="6" style="zoom:150%;" />
+  <img src="https://user-images.githubusercontent.com/79510083/121180563-f6246b00-c89b-11eb-831f-ecb309dd9c8d.png" alt="6" style="zoom:150%;" />
 * MatchingcardActivity<br>
-<img src="https://user-images.githubusercontent.com/79510083/121180592-fb81b580-c89b-11eb-97c7-33d40c7302a8.png" alt="7" style="zoom: 150%;" />
-* shisenActivity<br>
+  <img src="https://user-images.githubusercontent.com/79510083/121180592-fb81b580-c89b-11eb-97c7-33d40c7302a8.png" alt="7" style="zoom: 150%;" />
+
+shisenActivity<br>
 <img src="https://user-images.githubusercontent.com/79510083/121180624-00df0000-c89c-11eb-9e6d-3dc8c7718e17.png" alt="8" style="zoom: 200%;" />
+
+# 참조
+
+* https://github.com/walkor/phpsocket.io
